@@ -17,3 +17,4 @@ class TestStellarBurgersNavigation:
         
         driver.find_element(*StellarBurgersLocators.BUNS_TAB).click()
         assert "Булки" in driver.find_element(*StellarBurgersLocators.ACTIVE_TAB).text
+        #
