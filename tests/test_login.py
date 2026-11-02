@@ -32,3 +32,4 @@ class TestStellarBurgersLogin:
         driver.find_element(*StellarBurgersLocators.FORGOT_PASSWORD_LOGIN_LINK).click()
         
         assert driver.find_element(*StellarBurgersLocators.LOGIN_HEADER).is_displayed()
+        

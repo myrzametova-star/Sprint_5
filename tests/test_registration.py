@@ -51,3 +51,4 @@ def test_registration_short_password_error(driver):
   
     error_message = driver.find_element(*StellarBurgersLocators.REG_PASSWORD_ERROR)
     assert error_message.is_displayed()
+    
