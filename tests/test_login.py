@@ -1,34 +1,58 @@
 import pytest
-from selenium.webdriver.common.by import By
-from locators import StellarBurgersLocators
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from tests.locators import StellarBurgersLocators
+from urls import BASE_URL
 
 class TestStellarBurgersLogin:
 
-
     def test_login_from_main_page_success(self, driver):
-        driver.get("https://qa-stellarburgers.education-services.ru/")
-        driver.find_element(*StellarBurgersLocators.MAIN_LOGIN_ACCOUNT_BUTTON).click()
+        driver.get(BASE_URL)
+   
+        button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(StellarBurgersLocators.MAIN_LOGIN_ACCOUNT_BUTTON)
+        )
+        button.click()
         
-        assert driver.find_element(*StellarBurgersLocators.LOGIN_HEADER).is_displayed()
+        assert WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(StellarBurgersLocators.LOGIN_HEADER)
+        ).is_displayed()
 
-  
     def test_login_from_personal_account_button_success(self, driver):
-        driver.get("https://qa-stellarburgers.education-services.ru/")
-        driver.find_element(*StellarBurgersLocators.PERSONAL_ACCOUNT_BUTTON).click()
-        
-        assert driver.find_element(*StellarBurgersLocators.LOGIN_HEADER).is_displayed()
+        driver.get(BASE_URL)
 
+        button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(StellarBurgersLocators.PERSONAL_ACCOUNT_BUTTON)
+        )
+        button.click()
+        
+        assert WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(StellarBurgersLocators.LOGIN_HEADER)
+        ).is_displayed()
 
     def test_login_from_registration_form_success(self, driver):
-        driver.get("https://education-services.ru")
- 
-        driver.find_element(By.XPATH, ".//a[@href='/login']").click()
+        driver.get(f"{BASE_URL}register")
+     
+        link = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(StellarBurgersLocators.REG_LOGIN_LINK)
+        )
+        link.click()
         
-        assert driver.find_element(*StellarBurgersLocators.LOGIN_HEADER).is_displayed()
+        assert WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(StellarBurgersLocators.LOGIN_HEADER)
+        ).is_displayed()
 
-   
     def test_login_from_forgot_password_form_success(self, driver):
-        driver.get("https://education-services.ru")
-        driver.find_element(*StellarBurgersLocators.FORGOT_PASSWORD_LOGIN_LINK).click()
+        driver.get(f"{BASE_URL}forgot-password")
         
-        assert driver.find_element(*StellarBurgersLocators.LOGIN_HEADER).is_displayed()
+        link = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(StellarBurgersLocators.FORGOT_PASSWORD_LOGIN_LINK)
+        )
+        link.click()
+        
+        assert WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(StellarBurgersLocators.LOGIN_HEADER)
+        ).is_displayed()
+        
+
+        

@@ -11,3 +11,4 @@ def driver():
     
     yield chrome_driver
     chrome_driver.quit()
+    
