@@ -13,4 +13,12 @@ class StellarBurgersLocators:
     REG_SUBMIT_BUTTON = (By.XPATH, ".//button[text()='Зарегистрироваться']")
     REG_PASSWORD_ERROR = (By.XPATH, ".//p[contains(@class, 'input__error') and text()='Некорректный пароль']")
     REG_LOGIN_LINK = (By.XPATH, ".//a[@href='/login' and text()='Войти']")
+
+    @staticmethod
+    def get_tab_locator(tab_name):
+        return (By.XPATH, f"//*[text()='{tab_name}']")
+
+    @staticmethod
+    def get_tab_heading_locator(tab_name):
+        return (By.XPATH, f"//h2[text()='{tab_name}']")
     
